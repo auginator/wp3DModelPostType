@@ -175,4 +175,16 @@ function save_3d_object_metadata(){
   update_post_meta($post->ID, "object_lineage", $_POST["object_lineage"]);
 }
 
+// Extend allowed files types in Media upload to support STL
+add_filter('upload_mimes', 'custom_upload_mimes');
+function custom_upload_mimes ( $existing_mimes=array() ) {
+
+// Add *.stl files to Media upload
+$existing_mimes['stl'] = 'application/octet-stream';
+$existing_mimes['stl'] = 'application/sla';
+
+return $existing_mimes;
+
+}
+
 ?>
